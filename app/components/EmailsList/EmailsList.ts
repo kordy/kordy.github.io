@@ -1,54 +1,84 @@
 import * as styles from '../../index.styl';
 import crossSvg from '../../assets/cross.svg';
+import Component from "../Component";
+import { isEmailValid } from "../../utils";
 
-export default class EmailsList {
-  emails: string[];
-  onRemove: (i: number) => void
-  rootEl: HTMLElement;
+interface IEmailList {
+  emails: string[],
+  id: string
+}
 
-  get template() {
-    return `
-      <div class="${styles.emailInputList}">
-        ${
-          this.emails.map(({ email, isValid }, i) =>`
-            <div class="${styles.emailInputListItem} ${isValid ? styles.isValid : styles.isInvalid}">
-                ${email} <button data-i=${i} type="button" class="${styles.emailInputListItemRemove}">${crossSvg}</button>
-            </div>`
-          ).join('')
-        }
-        <label for="emailsInput" class="${styles.emailInputListItem} ${styles.isPlaceholder}">add more people…</label>
-      </div>`;
+export default class EmailsList extends Component<IEmailList> {
+
+  private emails: emailsInputTypes.EmailsType;
+
+  protected onBeforeInit() {
+    this.emails = EmailsList.handleEmails(this.props.emails);
   }
 
-  constructor(rootEl: HTMLElement, props: { onRemove: (i: number) => void, emails: string[] }) {
-    this.rootEl = rootEl;
-    this.onRemove = props && props.onRemove;
-    this.emails = props && props.emails;
-    this.initElement();
+  private static handleEmails(emails: string | string[]): emailsInputTypes.EmailsType {
+    return []
+      .concat(emails)
+      .filter(email => email)
+      .map(email => ({
+        email,
+        isValid: isEmailValid(email)
+      }));
   }
 
-  private handleClick = (e: Event) => {
-    const button = e.target.closest(`.${styles.emailInputListItemRemove}`);
-    if (button) {
-      this.onRemove(+button.getAttribute('data-i'));
+  protected onAfterInit() {
+    this.rootEl.addEventListener('click', this.handleClick.bind(this));
+  }
+
+  private handleClick(e: Event): void {
+    const buttonEl = (e.target as HTMLElement).closest('.js-remove');
+    if (buttonEl) {
+      const listItemEl = (e.target as HTMLElement).closest('.js-list-item');
+      const i = Array.from(listItemEl.parentElement.children).indexOf(listItemEl);
+      this.removeEmailFromState(i);
+      this.removeEmailFromHTML(i);
     }
   }
 
-  private addEventListeners() {
-    this.rootEl.addEventListener('click', this.handleClick)
+  public addEmails(emails: string | string[]) {
+    const newEmails = EmailsList.handleEmails(emails);
+    this.appendEmailsToState(newEmails);
+    this.appendEmailsToHTML(newEmails);
   }
 
-  private initElement() {
-    this.addEventListeners();
-    this.render();
+  private appendEmailsToState(newEmails: emailsInputTypes.EmailsType): void {
+    this.emails = [...this.emails, ...newEmails];
   }
 
-  public update(emails: string[]) {
-    this.emails = emails;
-    this.render();
+  private appendEmailsToHTML(newEmails: emailsInputTypes.EmailsType): void {
+    this.rootEl
+      .querySelector('.js-placeholder')
+      .insertAdjacentHTML('beforebegin', EmailsList.getListTemplate(newEmails));
   }
 
-  private render() {
-    this.rootEl.innerHTML = this.template;
+  private removeEmailFromState(i: number) {
+    this.emails.splice(i, 1)
+  }
+
+  private removeEmailFromHTML(i: number) {
+    this.rootEl
+      .querySelector('.js-list')
+      .removeChild(this.rootEl.querySelectorAll('.js-list-item')[i])
+  }
+
+  private static getListTemplate(emails: emailsInputTypes.EmailsType) {
+    return emails.map(({ email, isValid }, i) =>`
+      <div class="js-list-item ${styles.emailInputListItem} ${isValid ? styles.isValid : styles.isInvalid}">
+        ${email} <button type="button" class="js-remove ${styles.emailInputListItemRemove}">${crossSvg}</button>
+      </div>`
+    ).join('')
+  }
+
+  get template() {
+    return `
+      <div class="js-list ${styles.emailInputList}">
+        ${EmailsList.getListTemplate(this.emails)}
+        <label for="${this.props.id}" class="js-placeholder ${styles.emailInputListItem} ${styles.isPlaceholder}">add more people…</label>
+      </div>`;
   }
 }

@@ -1,25 +1,43 @@
 import * as styles from './index.styl';
 import Input from './components/Input/Input';
 import EmailsList from './components/EmailsList/EmailsList';
-import { isEmailValid } from './utils';
+import Component from "./components/Component";
+import { getUniqueNumber } from "./utils";
 
 interface IEmailsInput {
-  rootEl: HTMLElement
+  emails: string[];
 }
 
-class EmailsInput implements IEmailsInput {
-  rootEl: HTMLElement;
-  emails: string[] = [];
+class EmailsInput extends Component<IEmailsInput> {
   emailList: EmailsList;
 
-  template() {
+  protected onBeforeInit() {
+    if (!this.props.emails) this.props.emails = [];
+  }
+
+  protected onAfterInit() {
+    const inputEl = this.rootEl.querySelector('.js-input');
+    const emailsListEl = this.rootEl.querySelector('.js-emailsList');
+    const id = `emailInput_${getUniqueNumber()}`;
+    new Input(inputEl as HTMLElement, { onEnter: this.onInputEnter.bind(this), id });
+    this.emailList = new EmailsList(emailsListEl as HTMLElement, {
+      emails: this.props.emails,
+      id
+    });
+  }
+
+  private onInputEnter(emails: string | string[]) {
+    this.emailList.addEmails(emails);
+  }
+
+  get template() {
     return `
       <div class="${styles.layout}">
         <div class="${styles.form}">
             <div class="${styles.formTop}">
                 <div class="${styles.formTitle}">Share <strong>Board name</strong> with others</div>
                 <div class="${styles.emailInput}">
-                    <div class="js-emailInput"></div>
+                    <div class="js-emailsList"></div>
                     <div class="js-input"></div>
                 </div>
             </div>
@@ -31,41 +49,6 @@ class EmailsInput implements IEmailsInput {
       </div>
     `;
   }
-
-
-  constructor(rootEl: HTMLElement) {
-    if (!(this instanceof EmailsInput)) {
-      return new EmailsInput(rootEl);
-    }
-
-    this.rootEl = rootEl;
-    this.render();
-    const input = new Input({ onEnter: this.onInputEnter });
-    this.emailList = new EmailsList(this.rootEl.querySelector('.js-emailInput'), {
-      onRemove: this.onRemoveEmail,
-      emails: []
-    });
-    this.rootEl.querySelector('.js-input').appendChild(input.getElement());
-
-  }
-
-  onRemoveEmail = (i: number) => {
-    this.emails.splice( i, 1);
-    this.emailList.update(this.emails);
-  }
-
-  onInputEnter = (email: string) => {
-    this.emails.push({
-      email,
-      isValid: isEmailValid(email)
-    });
-    this.emailList.update(this.emails);
-  }
-
-  render() {
-    this.rootEl.innerHTML = this.template();
-  }
-  
 }
 
 declare global {

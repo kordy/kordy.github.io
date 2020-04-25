@@ -1,54 +1,52 @@
 import * as styles from '../../index.styl';
+import Component from "../Component";
 
-export default class Input {
-  emails: string[];
-  el: HTMLElement;
+interface IInput {
+  onEnter: emailsInputTypes.onEnterType,
+  id: string
+}
 
-  template() {
-    return `<input class="${styles.emailInputInput}" type="text" id="emailsInput" />`;
+export default class Input extends Component<IInput> {
+
+  private inputElement: HTMLInputElement;
+
+  protected onAfterInit(): void {
+    this.inputElement = this.rootEl.querySelector(`.${styles.emailInputInput}`);
+    this.inputElement.addEventListener('keypress', this.onKeyUp.bind(this));
+    this.inputElement.addEventListener('blur', this.onBlur.bind(this));
+    this.inputElement.addEventListener('paste', this.onPaste.bind(this));
   }
 
-  constructor(props) {
-    this.onEnter = props && props.onEnter;
-    this.initElement();
-  }
-
-  private static createElementFromHTML(htmlString) {
-    const div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-    return div.firstChild;
-  }
-
-  private initElement() {
-    this.el = Input.createElementFromHTML(this.template());
-    this.addEventListeners()
-  }
-
-  private onAddEmail() {
-    const value = this.el.value.trim();
+  private onAddEmail(): void {
+    const value = this.inputElement.value.trim();
     if (value) {
-      this.onEnter(this.el.value)
+      this.props.onEnter(this.inputElement.value)
     }
-    this.el.value = '';
+    this.inputElement.value = '';
   }
 
-  private onKeyPress = ({ keyCode }) => {
-    if (keyCode === 13 || keyCode === 44) {
-      this.onAddEmail()
+  private onKeyUp(e: KeyboardEvent): void {
+    if (e.keyCode === 13 || e.keyCode === 44) {
+      this.onAddEmail();
+      e.preventDefault();
     }
   }
 
-  private onBlur = () => {
+  private onBlur(): void {
     this.onAddEmail()
   }
 
-  private addEventListeners() {
-    this.el.addEventListener('keypress', this.onKeyPress)
-    this.el.addEventListener('blur', this.onBlur)
+  private onPaste(e: ClipboardEvent): void {
+    e.stopPropagation();
+    e.preventDefault();
+    const clipboardValue = e.clipboardData.getData('Text');
+    const trimmedValue = clipboardValue && clipboardValue.replace(/\s+/g, '')
+    if (trimmedValue) {
+      this.props.onEnter(trimmedValue.split(','))
+    }
   }
 
-  public getElement() {
-    return this.el;
+  protected get template() {
+    return `<input class="${styles.emailInputInput}" type="text" id="${this.props.id}" />`;
   }
-
 }

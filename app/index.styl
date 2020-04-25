@@ -18,10 +18,16 @@ button
   font-family 'Open Sans', Arial, Verdana, sans-serif
 
 .layout
+  box-sizing border-box
   display flex
   flex-direction column
   width 100%
   height 100vh
+  padding: 24px 0
+
+  @media only screen and (max-width: 767px) {
+    padding: 0
+  }
 
 .form
   width 540px
