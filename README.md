@@ -1,14 +1,12 @@
 # Emails Input
 
-<a href="https://kordy.github.io/dist/" target="_blank">Demo</a>
-
-<h2>Description</h2>
 <p>A reusable beautifully designed component that allows you to enter and paste emails, receive a list of all entered emails, and also subscribe to it's changes.</p>
+<a href="https://kordy.github.io/dist/" target="_blank">Demo</a>
 
 <h2>Usage</h2>
 <p>Add emailInput script to the page, create EmailInput object, pass rootElement and possible options.</p>
 
-*EmailsInput([rootElement], [options])*
+**EmailsInput([rootElement], [options])**
 
 ```html
 <div id="emailInputNode"></div>
@@ -24,7 +22,7 @@
 ```
 <h2>Options</h2>
 
-*initialEmails*
+**initialEmails**
 <p>initial input value. Accepts string array.</p>
 
 ```js
@@ -35,7 +33,7 @@
 
 <h2>Public API</h2>
 
-*subscribe([callback])*
+**subscribe([callback])**
 <p>Subscribing for all input changes. Accepts function, which will be called, on each change, emails list will be passed to this function as an argument.</p>
 
 ```js
@@ -44,7 +42,7 @@
     alert(emails);
   })  
 ```
-*unSubscribe([callback])*
+**unSubscribe([callback])**
 <p>Unsubscribing from input changes. The same callback as in the subscription should be passed.</p>
 
 ```js
@@ -57,7 +55,7 @@
   emailsInput.unSubscribe(cb);
 ```
 
-*getAllEmails()*
+**getAllEmails()**
 <p>Returns all entered emails.</p>
 
 ```js
@@ -66,7 +64,7 @@
   });
   emailsInput.getAllEmails(); // ['user@domain.com', 'another_user@domain.com']
 ```
-*replaceEmails([emails])*
+**replaceEmails([emails])**
 <p>Replace all entered emails with new emails array.</p>
 
 ```js
