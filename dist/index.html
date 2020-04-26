@@ -24,20 +24,20 @@
     <script src="./emailInput.js"></script>
     <script src="./demo.js"></script>
     <script>
-      const emailsInputNode = document.querySelector('#emailInput');
-      const emailsInput = EmailsInput(emailsInputNode, {
+      var emailsInputNode = document.querySelector('#emailInput');
+      var emailsInput = EmailsInput(emailsInputNode, {
         emails: ['user@domain.com', 'another_user@domain.com']
       });
-      const getEmailsButtonNode = document.querySelector('.js-get-emails-button');
-      const addEmailButtonNode = document.querySelector('.js-add-email-button');
+      var getEmailsButtonNode = document.querySelector('.js-get-emails-button');
+      var addEmailButtonNode = document.querySelector('.js-add-email-button');
 
       getEmailsButtonNode.addEventListener('click', function() {
         alert('Emails count: ' + emailsInput.getAllEmails().length);
       })
 
       addEmailButtonNode.addEventListener('click', function() {
-        const emails = emailsInput.getAllEmails();
-        const newEmail = getRandomEmail(5, 10);
+        var emails = emailsInput.getAllEmails();
+        var newEmail = getRandomEmail(5, 10);
         emails.push(newEmail);
         emailsInput.replaceEmails(emails);
       })
