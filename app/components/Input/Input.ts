@@ -12,7 +12,7 @@ export default class Input extends Component<IInput> {
 
   protected onAfterInit(): void {
     this.inputElement = this.rootEl.querySelector('.js-input');
-    this.inputElement.addEventListener('keypress', this.onKeyUp.bind(this));
+    this.inputElement.addEventListener('keyup', this.onKeyUp.bind(this));
     this.inputElement.addEventListener('blur', this.onBlur.bind(this));
     this.inputElement.addEventListener('paste', this.onPaste.bind(this));
   }
@@ -30,7 +30,6 @@ export default class Input extends Component<IInput> {
   }
 
   private onKeyUp(e: KeyboardEvent): void {
-    alert(e.key);
     if (e.key === 'Enter' || e.key === ',') {
       this.onAddEmail();
       e.preventDefault();
