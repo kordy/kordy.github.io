@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const srcPath = path.join(__dirname, 'app');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const demoCss = new ExtractTextWebpackPlugin("demo.css");
 
 module.exports = {
@@ -32,7 +34,7 @@ module.exports = {
         test: /\.styl$/,
         exclude: path.join(__dirname, 'app/demo'),
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'typings-for-css-modules-loader',
             options: {
@@ -63,6 +65,9 @@ module.exports = {
     ]
   },
   plugins: [
-    demoCss
+    demoCss,
+    new MiniCssExtractPlugin({
+      filename: 'emailInput.css',
+    }),
   ]
 };

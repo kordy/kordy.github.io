@@ -4,21 +4,28 @@
 <a href="https://kordy.github.io/dist/" target="_blank">Demo</a>
 
 <h2>Usage</h2>
-<p>Add emailInput script to the page, create EmailInput object, pass rootElement and possible options.</p>
+<p>Add emailInput script and css to the page, create EmailInput object, pass rootElement and possible options.</p>
 
 **EmailsInput([rootElement], [options])**
 
 ```html
-<div id="emailInputNode"></div>
-...
-<script src="https://kordy.github.io/dist/emailInput.js"></script>
-<script>
-  const emailsInputNode = document.querySelector('#emailInputNode');
-  const emailsInput = EmailsInput(emailsInputNode, {
-    initialEmails: ['user@domain.com', 'another_user@domain.com']
-  });
-</script>
-...
+<head>
+  ...
+  <link href="https://kordy.github.io/dist/emailInput.css" rel="stylesheet">
+  ...
+</head>
+<body>
+  <div id="emailInputNode"></div>
+  ...
+  <script src="https://kordy.github.io/dist/emailInput.js"></script>
+  <script>
+    const emailsInputNode = document.querySelector('#emailInputNode');
+    const emailsInput = EmailsInput(emailsInputNode, {
+      initialEmails: ['user@domain.com', 'another_user@domain.com']
+    });
+  </script>
+  ...
+</body>
 ```
 <h2>Options</h2>
 

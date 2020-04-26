@@ -1,0 +1,89 @@
+.EmailsInput_container__YcJ04 {
+  background: #fff;
+  border: 1px solid #c3c2cf;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.Input_input__ZoxJJ {
+  font-family: 'Open Sans', Arial, Verdana, sans-serif;
+  border: none;
+  outline: none;
+  height: 24px;
+  width: 100%;
+}
+.Input_input__ZoxJJ::-ms-clear {
+  display: none;
+}
+
+.EmailsList_list__3tqcO {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -8px;
+  margin-top: -4px;
+  margin-bottom: 8px;
+}
+.EmailsList_listItem__U3Osz {
+  font-size: 14px;
+  line-height: 24px;
+  margin-left: 8px;
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.EmailsList_listItem__U3Osz.EmailsList_isValid__1y6Kl {
+  background: rgba(102,153,255,0.2);
+  border-radius: 100px;
+  padding: 0 8px;
+  padding-right: 24px;
+}
+.EmailsList_listItem__U3Osz.EmailsList_isInvalid__2OTjr {
+  border-bottom: 1px dashed #d92929;
+  padding-right: 16px;
+}
+.EmailsList_listItem__U3Osz.EmailsList_isInvalid__2OTjr .EmailsList_listItemRemove__3_zWJ {
+  right: -8px;
+}
+.EmailsList_listItem__U3Osz.EmailsList_isPlaceholder__2ni_6 {
+  cursor: pointer;
+  color: #c3c2cf;
+}
+.EmailsList_listItemRemove__3_zWJ {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none;
+}
+@media (hover: none) {
+  .EmailsList_listItemRemove__3_zWJ {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    transition: none 0.15s ease;
+  }
+  .EmailsList_listItemRemove__3_zWJ:active svg {
+    color: #000;
+    transform: scale(0.85);
+  }
+}
+@media (hover: hover), all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .EmailsList_listItemRemove__3_zWJ:hover svg {
+    color: #000;
+    transform: scale(0.85);
+  }
+}
+.EmailsList_listItemRemove__3_zWJ svg {
+  transition: transform 0.15s ease,color 0.15s ease;
+  width: 8px;
+  height: 8px;
+}
+
