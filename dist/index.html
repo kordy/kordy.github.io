@@ -24,7 +24,9 @@
     <script src="./demo.js"></script>
     <script>
       const emailsInputNode = document.querySelector('#emailInput');
-      const emailsInput = new EmailsInput(emailsInputNode);
+      const emailsInput = new EmailsInput(emailsInputNode, {
+        emails: ['user@domain.com', 'another_user@domain.com']
+      });
       const getEmailsButtonNode = document.querySelector('.js-get-emails-button');
       const addEmailButtonNode = document.querySelector('.js-add-email-button');
 

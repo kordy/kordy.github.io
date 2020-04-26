@@ -1,6 +1,6 @@
 namespace emailsInputTypes {
   export interface IEmailsInput {
-    emails: string[];
+    initialEmails: string[];
   }
   export interface IEmail {
     email: string,

@@ -8,17 +8,13 @@ export default class EmailsInput extends Component<emailsInputTypes.IEmailsInput
   emailList: EmailsList;
   input: Input;
 
-  protected onBeforeInit() {
-    if (!this.props.emails) this.props.emails = [];
-  }
-
   protected onAfterInit() {
     const inputEl = this.rootEl.querySelector('.js-input');
     const emailsListEl = this.rootEl.querySelector('.js-emailsList');
     const id = `emailInput_${getUniqueNumber()}`;
     this.input = new Input(inputEl as HTMLElement, { onEnter: this.onInputEnter.bind(this), id });
     this.emailList = new EmailsList(emailsListEl as HTMLElement, {
-      emails: this.props.emails,
+      emails: this.props.initialEmails || [],
       id
     });
     this.rootEl.addEventListener('click', () => this.input.focus());
