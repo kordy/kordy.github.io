@@ -30,6 +30,7 @@ export default class Input extends Component<IInput> {
   }
 
   private onKeyUp(e: KeyboardEvent): void {
+    alert(e.key);
     if (e.key === 'Enter' || e.key === ',') {
       this.onAddEmail();
       e.preventDefault();
