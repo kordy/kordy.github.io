@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email input</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="./demo.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="layout">
+      <div class="form">
+        <div class="formTop">
+          <div class="formTitle">Share <strong>Board name</strong> with others</div>
+          <div id="emailInput">if you see it, something wrong here :|</div>
+        </div>
+        <div class="formBottom">
+          <button class="js-add-email-button formButton">Add Email</button>
+          <button class="js-get-emails-button formButton">Get Emails Count</button>
+        </div>
+      </div>
+    </div>
+    <script src="./bundle.js"></script>
+    <script>
+      const emailsInputNode = document.querySelector('#emailInput');
+      const emailsInput = new EmailsInput(emailsInputNode);
+      const getEmailsButtonNode = document.querySelector('.js-get-emails-button');
+      const addEmailButtonNode = document.querySelector('.js-add-email-button');
+      const cb = function(emails) {
+        console.log('change')
+        console.log(emails)
+      }
+      emailsInput.subscribe(cb)
+
+      function randomIntBetween(min, max) {
+        return min + Math.floor((max + 1 - min) * Math.random());
+      }
+
+      function getRandomEmail(minLength, maxLength) {
+        if (!minLength) minLength = 3;
+        if (!maxLength) maxLength = 8;
+        let text = "";
+        const possibleChars = "abcdefghijklmnopqrstuvwxyz0123456789-";
+        const possibleDomains = [
+          '@gmail.com',
+          '@mail.ru',
+          '@domain.com',
+          '@miro.com'
+        ]
+        const length = randomIntBetween(minLength, maxLength);
+        console.log(length);
+        for( let i = 0; i < length; i++ )
+          text += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+
+        return text + possibleDomains[randomIntBetween(0, possibleDomains.length - 1)];
+      }
+
+      getEmailsButtonNode.addEventListener('click', function() {
+        alert('Emails count: ' + emailsInput.getAllEmails().length);
+      })
+
+      addEmailButtonNode.addEventListener('click', function() {
+        const emails = emailsInput.getAllEmails();
+        const newEmail = getRandomEmail(5, 10);
+        emails.push(newEmail);
+        emailsInput.replaceEmails(emails);
+      })
+
+
+    </script>
+  </body>
+</html>
