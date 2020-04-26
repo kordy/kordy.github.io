@@ -32,7 +32,7 @@ button
   height 100vh
   padding: $bigIndent 0
 
-  @media mediaMobile {
+  @media $mediaMobile {
     padding: 0
   }
 
@@ -44,7 +44,7 @@ button
   box-shadow $boxShadow
   border-radius 8px
 
-  @media mediaMobile {
+  @media $mediaMobile {
     width 100%
     display flex
     flex-direction column
@@ -56,7 +56,7 @@ button
 .formTop
   background $formTopBackground
   padding 32px 50px 24px
-  @media mediaMobile {
+  @media $mediaMobile {
     flex-basis 100%
     overflow auto
     padding $mobilePadding
@@ -69,7 +69,7 @@ button
   margin-left -($smallIndent * 2)
   margin-top -($smallIndent)
 
-  @media mediaMobile {
+  @media $mediaMobile {
     flex-shrink 0
     padding $mobilePadding
   }
@@ -87,7 +87,7 @@ button
   +hover()
     background darken($buttonColor, 20%)
 
-  @media mediaMobile {
+  @media $mediaMobile {
     flex-grow 1
   }
 
