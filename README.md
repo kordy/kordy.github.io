@@ -1,6 +1,7 @@
 # Emails Input
 
-<a href="https://kordy.github.io/dist/">Demo</a>
+<a href="https://kordy.github.io/dist/" target="_blank">Demo</a>
+
 <h2>Description</h2>
 <p>A reusable beautifully designed component that allows you to enter and paste emails, receive a list of all entered emails, and also subscribe to it's changes.</p>
 
