@@ -28,7 +28,22 @@ module.exports = {
       {
         test: /\.styl$/,
         include: path.join(__dirname, 'app/demo'),
-        use: demoCss.extract('css-loader!stylus-loader'),
+        use: demoCss.extract( {
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: [
+                  require('autoprefixer'),
+                ]
+              }
+            },
+            'stylus-loader'
+          ]
+        }),
       },
       {
         test: /\.styl$/,
@@ -41,6 +56,15 @@ module.exports = {
               modules: true,
               namedExport: true,
               localIdentName: "[name]_[local]__[hash:base64:5]"
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer'),
+              ]
             }
           },
           'stylus-loader'

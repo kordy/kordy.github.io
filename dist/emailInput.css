@@ -1,7 +1,8 @@
 .EmailsInput_container__YcJ04 {
   background: #fff;
   border: 1px solid #c3c2cf;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 4px;
   padding: 8px;
   max-height: 100%;
@@ -23,8 +24,13 @@
 }
 
 .EmailsList_list__3tqcO {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
   margin-left: -8px;
   margin-top: -4px;
   margin-bottom: 8px;
@@ -36,7 +42,8 @@
   margin-top: 4px;
   position: relative;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 .EmailsList_listItem__U3Osz.EmailsList_isValid__1y6Kl {
   background: rgba(102,153,255,0.2);
@@ -71,21 +78,31 @@
 @media (hover: none) {
   .EmailsList_listItemRemove__3_zWJ {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-transition: none 0.15s ease;
+    -o-transition: none 0.15s ease;
     transition: none 0.15s ease;
   }
   .EmailsList_listItemRemove__3_zWJ:active svg {
     color: #000;
-    transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+        -ms-transform: scale(0.85);
+            transform: scale(0.85);
   }
 }
 @media (hover: hover), all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .EmailsList_listItemRemove__3_zWJ:hover svg {
     color: #000;
-    transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+        -ms-transform: scale(0.85);
+            transform: scale(0.85);
   }
 }
 .EmailsList_listItemRemove__3_zWJ svg {
+  -webkit-transition: color 0.15s ease,-webkit-transform 0.15s ease;
+  transition: color 0.15s ease,-webkit-transform 0.15s ease;
+  -o-transition: transform 0.15s ease,color 0.15s ease;
   transition: transform 0.15s ease,color 0.15s ease;
+  transition: transform 0.15s ease,color 0.15s ease,-webkit-transform 0.15s ease;
   width: 8px;
   height: 8px;
 }
