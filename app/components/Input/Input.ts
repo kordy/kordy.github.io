@@ -30,7 +30,13 @@ export default class Input extends Component<IInput> {
   }
 
   private onKeyUp(e: KeyboardEvent): void {
-    if (e.key === 'Enter' || e.key === ',') {
+    const currentCode = e.which || e.code;
+    let currentKey = '';
+    if (!currentKey) {
+      currentKey = String.fromCharCode(+currentCode);
+    }
+    alert(e.which + ':' +  e.code + ':' + e.keyCode);
+    if (currentKey === 'Enter' || currentKey === ',') {
       this.onAddEmail();
       e.preventDefault();
     }
