@@ -1,8 +1,8 @@
-import * as styles from '../../index.styl';
+import * as styles from './Input.styl';
 import Component from "../Component";
 
 interface IInput {
-  onEnter: emailsInputTypes.onEnterType,
+  onEnter: emailsInputTypes.OnEnterType,
   id: string
 }
 
@@ -11,10 +11,14 @@ export default class Input extends Component<IInput> {
   private inputElement: HTMLInputElement;
 
   protected onAfterInit(): void {
-    this.inputElement = this.rootEl.querySelector(`.${styles.emailInputInput}`);
+    this.inputElement = this.rootEl.querySelector('.js-input');
     this.inputElement.addEventListener('keypress', this.onKeyUp.bind(this));
     this.inputElement.addEventListener('blur', this.onBlur.bind(this));
     this.inputElement.addEventListener('paste', this.onPaste.bind(this));
+  }
+
+  public focus(): void {
+    this.inputElement.focus();
   }
 
   private onAddEmail(): void {
@@ -47,6 +51,6 @@ export default class Input extends Component<IInput> {
   }
 
   protected get template() {
-    return `<input class="${styles.emailInputInput}" type="text" id="${this.props.id}" />`;
+    return `<input class="js-input ${styles.input}" type="text" id="${this.props.id}" />`;
   }
 }

@@ -1,9 +1,13 @@
 namespace emailsInputTypes {
+  export interface IEmailsInput {
+    emails: string[];
+  }
   export interface IEmail {
     email: string,
     isValid: boolean
   }
   export type EmailsType = IEmail[]
-  export type onRemoveEmailType = (index: number) => void
-  export type onEnterType = (email: string | string[]) => void
+  export type EmailsUnhandledType = string | string[];
+  export type OnEnterType = (email: EmailsUnhandledType) => void
+  export type Callback = (email: EmailsUnhandledType) => any
 }

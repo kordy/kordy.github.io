@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const srcPath = path.join(__dirname, 'app');
+const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+const demoCss = new ExtractTextWebpackPlugin("demo.css");
 
 module.exports = {
   entry: {
@@ -23,7 +25,12 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        include: srcPath,
+        include: path.join(__dirname, 'app/demo'),
+        use: demoCss.extract('css-loader!stylus-loader'),
+      },
+      {
+        test: /\.styl$/,
+        exclude: path.join(__dirname, 'app/demo'),
         use: [
           'style-loader',
           {
@@ -54,5 +61,8 @@ module.exports = {
         loader: 'svg-inline-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    demoCss
+  ]
 };

@@ -14,16 +14,23 @@ export default class Component<IProps> {
     this.onAfterInit();
   }
 
-  protected render() {
-    this.rootEl.innerHTML = this.template;
-  }
-
   protected onBeforeInit() { }
 
   protected onAfterInit() { }
 
-  public update(props: Partial<IProps>): void {
-    this.props = { ...this.props, ...props };
-    this.render();
+  protected render() {
+    this.rootEl.innerHTML = this.template;
   }
+
+  protected onBeforeUpdate() { }
+
+  protected onAfterUpdate() { }
+
+  protected update(props: Partial<IProps>) {
+    this.props = { ...this.props, ...props };
+    this.onBeforeUpdate();
+    this.render();
+    this.onAfterUpdate();
+  }
+
 }
