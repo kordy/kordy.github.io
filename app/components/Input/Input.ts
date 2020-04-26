@@ -12,7 +12,8 @@ export default class Input extends Component<IInput> {
 
   protected onAfterInit(): void {
     this.inputElement = this.rootEl.querySelector('.js-input');
-    this.inputElement.addEventListener('keyup', this.onKeyUp.bind(this));
+    this.inputElement.addEventListener('keydown', this.onKeyUp.bind(this));
+    this.inputElement.addEventListener('input', this.onInput.bind(this));
     this.inputElement.addEventListener('blur', this.onBlur.bind(this));
     this.inputElement.addEventListener('paste', this.onPaste.bind(this));
   }
@@ -22,23 +23,28 @@ export default class Input extends Component<IInput> {
   }
 
   private onAddEmail(): void {
-    const value = this.inputElement.value.trim();
+    let value = this.inputElement.value.trim();
+    if (value[value.length - 1] === ',') {
+      value = value.slice(0, -1);
+    }
     if (value) {
-      this.props.onEnter(this.inputElement.value)
+      this.props.onEnter(value)
     }
     this.inputElement.value = '';
   }
 
-  private onKeyUp(e: KeyboardEvent): void {
-    const currentCode = e.which || e.code;
-    let currentKey = '';
-    if (!currentKey) {
-      currentKey = String.fromCharCode(+currentCode);
-    }
-    alert(e.which + ':' +  e.code + ':' + e.keyCode);
-    if (currentKey === 'Enter' || currentKey === ',') {
+  private onInput(e: InputEvent): void {
+    if (e.data === ',') {
       this.onAddEmail();
       e.preventDefault();
+    }
+  }
+
+  private onKeyUp(e: KeyboardEvent): void {
+    if (e.key === 'Enter' || e.key === ',') {
+      this.onAddEmail();
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
