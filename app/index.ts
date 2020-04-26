@@ -1,4 +1,5 @@
 import './demo/demo.styl';
+import './utils/polyfill';
 import EmailsInput from './components/EmailsInput/EmailsInput';
 
 const initInput = (rootEl: HTMLElement, props: emailsInputTypes.IEmailsInput) => {

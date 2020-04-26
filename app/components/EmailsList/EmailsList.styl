@@ -1,52 +1,52 @@
 @import '../../mixin.styl';
 
-invalidColor = #D92929
-placeHolderColor = #C3C2CF
-validBackground = rgba(102, 153, 255, 0.2);
+$invalidColor = #D92929
+$placeHolderColor = #C3C2CF
+$validBackground = rgba(102, 153, 255, 0.2);
 
-lineHeight = bigIndent
-indent = smallIndent
+$lineHeight = $bigIndent
+$indent = $smallIndent
 
 .list
   display flex
   flex-wrap wrap
-  margin-left -(indent)
-  margin-top -(indent / 2)
-  margin-bottom indent
+  margin-left -($indent)
+  margin-top -($indent / 2)
+  margin-bottom $indent
 
 .listItem
   font-size 14px
-  line-height lineHeight
-  margin-left indent
-  margin-top (indent / 2)
+  line-height $lineHeight
+  margin-left $indent
+  margin-top ($indent / 2)
   position relative
   overflow hidden
   text-overflow ellipsis
 
   &.isValid
-    background validBackground
+    background $validBackground
     border-radius 100px
-    padding: 0 indent
-    padding-right lineHeight
+    padding: 0 $indent
+    padding-right $lineHeight
 
   &.isInvalid
-    border-bottom 1px dashed invalidColor
-    padding-right (lineHeight - indent)
+    border-bottom 1px dashed $invalidColor
+    padding-right ($lineHeight - $indent)
 
     .listItemRemove
-      right -(indent)
+      right -($indent)
 
   &.isPlaceholder
     cursor pointer
-    color placeHolderColor
+    color $placeHolderColor
 
 .listItemRemove
   position absolute
   top 0
   right 0
   cursor pointer
-  width lineHeight
-  height lineHeight
+  width $lineHeight
+  height $lineHeight
   padding 0
   margin 0
   border none
@@ -60,6 +60,5 @@ indent = smallIndent
 
   svg
     transition(transform, color)
-    width indent
-    height indent
-
+    width $indent
+    height $indent

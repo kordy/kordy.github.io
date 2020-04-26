@@ -30,7 +30,7 @@ export default class Input extends Component<IInput> {
   }
 
   private onKeyUp(e: KeyboardEvent): void {
-    if (e.keyCode === 13 || e.keyCode === 44) {
+    if (e.key === 'Enter' || e.key === ',') {
       this.onAddEmail();
       e.preventDefault();
     }
@@ -43,7 +43,8 @@ export default class Input extends Component<IInput> {
   private onPaste(e: ClipboardEvent): void {
     e.stopPropagation();
     e.preventDefault();
-    const clipboardValue = e.clipboardData.getData('Text');
+
+    const clipboardValue = (e.clipboardData || window.clipboardData).getData('Text');
     const trimmedValue = clipboardValue && clipboardValue.replace(/\s+/g, '')
     if (trimmedValue) {
       this.props.onEnter(trimmedValue.split(','))
@@ -52,5 +53,11 @@ export default class Input extends Component<IInput> {
 
   protected get template() {
     return `<input class="js-input ${styles.input}" type="text" id="${this.props.id}" />`;
+  }
+}
+
+declare global {
+  interface Window {
+    clipboardData: any;
   }
 }

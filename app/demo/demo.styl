@@ -1,11 +1,11 @@
 @import '../mixin.styl';
 
-borderColor = #C3C2CF
-buttonColor = #4262FF
-formTopBackground = #F8F8F7
-boxShadow = 0 8px 20px rgba(0, 0, 0, 0.2)
+$borderColor = #C3C2CF
+$buttonColor = #4262FF
+$formTopBackground = #F8F8F7
+$boxShadow = 0 8px 20px rgba(0, 0, 0, 0.2)
 
-mobilePadding = 20px
+$mobilePadding = 20px
 
 *
   margin 0
@@ -14,15 +14,15 @@ mobilePadding = 20px
   -webkit-appearance none
 
 body
-  font-family fontFamily
+  font-family $fontFamily
   font-size 14px
-  color mainTextColor
+  color $mainTextColor
 
 button
   cursor pointer
   border none
   background none
-  font-family fontFamily
+  font-family $fontFamily
 
 .layout
   box-sizing border-box
@@ -30,7 +30,7 @@ button
   flex-direction column
   width 100%
   height 100vh
-  padding: bigIndent 0
+  padding: $bigIndent 0
 
   @media mediaMobile {
     padding: 0
@@ -41,7 +41,7 @@ button
   max-width 100%
   margin auto
   background #FFFFFF
-  box-shadow boxShadow
+  box-shadow $boxShadow
   border-radius 8px
 
   @media mediaMobile {
@@ -54,38 +54,38 @@ button
   }
 
 .formTop
-  background formTopBackground
+  background $formTopBackground
   padding 32px 50px 24px
   @media mediaMobile {
     flex-basis 100%
     overflow auto
-    padding mobilePadding
+    padding $mobilePadding
   }
 
 .formBottom
   padding 24px 50px 32px
   display flex
   flex-wrap wrap
-  margin-left -(smallIndent * 2)
-  margin-top -(smallIndent)
+  margin-left -($smallIndent * 2)
+  margin-top -($smallIndent)
 
   @media mediaMobile {
     flex-shrink 0
-    padding mobilePadding
+    padding $mobilePadding
   }
 
 .formButton
-  background buttonColor
+  background $buttonColor
   border-radius 6px
-  padding smallIndent (smallIndent * 2)
+  padding $smallIndent ($smallIndent * 2)
   color: #FFF
   line-height 24px
-  margin-left (smallIndent * 2)
-  margin-top smallIndent
+  margin-left ($smallIndent * 2)
+  margin-top $smallIndent
   transition(background)
 
   +hover()
-    background darken(buttonColor, 20%)
+    background darken($buttonColor, 20%)
 
   @media mediaMobile {
     flex-grow 1
@@ -94,4 +94,4 @@ button
 .formTitle
   font-size 20px
   line-height 27px
-  margin-bottom bigIndent
+  margin-bottom $bigIndent

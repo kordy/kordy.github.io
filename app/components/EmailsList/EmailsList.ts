@@ -1,7 +1,7 @@
 import * as styles from './EmailsList.styl';
 import crossSvg from '../../assets/cross.svg';
 import Component from "../Component";
-import { isEmailValid } from "../../utils";
+import { isEmailValid } from "../../utils/utils";
 
 interface IEmailList {
   emails: emailsInputTypes.EmailsUnhandledType,
@@ -47,7 +47,7 @@ export default class EmailsList extends Component<IEmailList> {
     const listItemEl = (e.target as HTMLElement).closest('.js-list-item');
     const buttonEl = (e.target as HTMLElement).closest('.js-remove');
     if (buttonEl) {
-      const i = Array.from(listItemEl.parentElement.children).indexOf(listItemEl);
+      const i = Array.prototype.slice.call(listItemEl.parentElement.children).indexOf(listItemEl);
       this.removeEmailFromState(i);
       this.removeEmailFromHTML(i);
       this.publishChange();

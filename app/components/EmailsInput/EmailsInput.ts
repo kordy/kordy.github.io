@@ -2,7 +2,7 @@ import * as styles from './EmailsInput.styl';
 import Input from '../Input/Input';
 import EmailsList from '../EmailsList/EmailsList';
 import Component from "../Component";
-import { getUniqueNumber } from "../../utils";
+import { getUniqueNumber } from "../../utils/utils";
 
 export default class EmailsInput extends Component<emailsInputTypes.IEmailsInput> {
   emailList: EmailsList;

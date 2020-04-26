@@ -1,10 +1,10 @@
-fontFamily = 'Open Sans', Arial, Verdana, sans-serif;
-mediaMobile = 'only screen and (max-width: 767px)'
+$fontFamily = 'Open Sans', Arial, Verdana, sans-serif;
+$mediaMobile = 'only screen and (max-width: 767px)'
 
-mainTextColor = #050038;
+$mainTextColor = #050038;
 
-smallIndent = 8px
-bigIndent = 24px
+$smallIndent = 8px
+$bigIndent = 24px
 
 hover()
   @media (hover: none)
@@ -18,9 +18,9 @@ hover()
       {block}
 
 transition()
-  value = ''
+  $value = ''
   for argument in arguments
-    if (value)
-      value += ','
-    value += argument .15s ease
-  transition unquote(value)
+    if ($value)
+      $value += ','
+    $value += argument .15s ease
+  transition unquote($value)
