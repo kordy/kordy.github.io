@@ -23,7 +23,7 @@ button {
   height: 100vh;
   padding: 24px 0;
 }
-@media mediaMobile {
+@media only screen and (max-width: 767px) {
   .layout {
     padding: 0;
   }
@@ -36,7 +36,7 @@ button {
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   border-radius: 8px;
 }
-@media mediaMobile {
+@media only screen and (max-width: 767px) {
   .form {
     width: 100%;
     display: flex;
@@ -50,7 +50,7 @@ button {
   background: #f8f8f7;
   padding: 32px 50px 24px;
 }
-@media mediaMobile {
+@media only screen and (max-width: 767px) {
   .formTop {
     flex-basis: 100%;
     overflow: auto;
@@ -64,7 +64,7 @@ button {
   margin-left: -16px;
   margin-top: -8px;
 }
-@media mediaMobile {
+@media only screen and (max-width: 767px) {
   .formBottom {
     flex-shrink: 0;
     padding: 20px;
@@ -94,7 +94,7 @@ button {
     background: #022dff;
   }
 }
-@media mediaMobile {
+@media only screen and (max-width: 767px) {
   .formButton {
     flex-grow: 1;
   }
