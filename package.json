@@ -4,7 +4,7 @@
   "browserslist": [
     "last 3 version",
     "IE 11",
-    "safari 10"
+    "safari 8"
   ],
   "description": "nexign test task",
   "devDependencies": {
