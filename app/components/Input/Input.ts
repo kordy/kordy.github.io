@@ -1,5 +1,6 @@
 import * as styles from './Input.styl';
 import Component from "../Component";
+import { isMobile } from "../../utils/utils";
 
 interface IInput {
   onEnter: emailsInputTypes.OnEnterType,
@@ -45,6 +46,9 @@ export default class Input extends Component<IInput> {
       this.onAddEmail();
       e.preventDefault();
       e.stopPropagation();
+    }
+    if (e.key === 'Enter' && isMobile) {
+      this.inputElement.blur();
     }
   }
 

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Email input</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="demo.css" rel="stylesheet">
@@ -24,7 +24,8 @@
     <script src="./emailInput.js"></script>
     <script src="./demo.js"></script>
     <script>
-      var emailsInputNode = document.querySelector('#emailInput');
+
+    var emailsInputNode = document.querySelector('#emailInput');
       var emailsInput = EmailsInput(emailsInputNode, {
         emails: ['user@domain.com', 'another_user@domain.com']
       });

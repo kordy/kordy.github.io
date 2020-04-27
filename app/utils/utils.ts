@@ -5,3 +5,4 @@ export const getUniqueNumber = (() => {
   return () => cnt++
 })()
 
+export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
