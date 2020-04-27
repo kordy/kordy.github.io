@@ -14,7 +14,6 @@ export default class Input extends Component<IInput> {
   protected onAfterInit(): void {
     this.inputElement = this.rootEl.querySelector('.js-input');
     this.inputElement.addEventListener('keydown', this.onKeyUp.bind(this));
-    this.inputElement.addEventListener('keypress', this.onKeyUp.bind(this));
     this.inputElement.addEventListener('input', this.onInput.bind(this));
     this.inputElement.addEventListener('blur', this.onBlur.bind(this));
     this.inputElement.addEventListener('paste', this.onPaste.bind(this));
